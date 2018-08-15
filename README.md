@@ -1,3 +1,14 @@
+# ucsc-bloomfilter.js
+This is a fork of bloomfilter.js to address a couple issues.
+
+- Allow passing in the desired error rate
+- Serialize/deserialize to ArrayBuffers, for space efficiency.
+
+On the latter point, a bloom filter may be used in-place in a larger
+buffer. This allows concatenating a list of pre-built filters on the server,
+and using them on the client without a parse step (apart from extracting
+the filter parameters).
+
 # bloomfilter.js
 Bloom filter is a space efficient probablistic data-structure. This implementation relies on following non-cryptographic hash functions.
 - Fowler–Noll–Vo hash function.
@@ -12,10 +23,10 @@ $ npm install bloomfilter.js
 ### Usage
 
 ```sh
-var bloom = require('bloomfilter.js');
+var Bloom = require('ucsc-bloomfilter.js');
 
 #constructor-arg value: probable number of elements in the filter.
-var filter = new bloom(100);
+var filter = new Bloom(100, 0.01);
 
 filter.add("test-data 1");
 filter.add("test-data 2");
@@ -26,10 +37,10 @@ console.log(filter.test("test-data 1"));	#true
 console.log(filter.test("test-data 2"));	#true
 
 #serialization
-var json = filter.serialize();
+var {buffer, start, size} = filter.buffer();
 
 #deserialization
-var deserialized_filter = bloom.deserialize(json);
+var deserialized_filter = Bloom(buffer, start);
 ```
 
 ###	References
@@ -61,3 +72,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+Portions Copyright The Regents of the University of California, Apache License V2.0

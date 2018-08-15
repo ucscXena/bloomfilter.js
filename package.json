@@ -1,5 +1,5 @@
 {
-  "name": "bloomfilter.js",
+  "name": "ucsc-bloomfilter.js",
   "version": "1.0.0",
   "scripts": {
     "test": "mocha"
@@ -7,7 +7,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/joyghosh/bloomfilter.js.git"
+    "url": "https://github.com/ucscXena/bloomfilter.js.git"
   },
   "keywords": [
     "bloom",
@@ -17,16 +17,16 @@
     "bloom filter",
     "filter"
   ],
-  "author": "Joy Ghosh <joyghosh007@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "mail": "joyghosh007@gmail.com",
-    "url": "https://github.com/joyghosh/bloomfilter.js/issues"
-  },
+  "author": "Brian Craft <craft@soe.ucsc.edu>",
+  "license": "MIT/Apache",
   "contributors": [
     {
       "name": "Joy Ghosh",
       "email": "joyghosh007@gmail.com"
+    },
+    {
+      "name": "Brian Craft",
+      "email": "craft@soe.ucsc.edu"
     }
   ],
   "devDependencies": {
